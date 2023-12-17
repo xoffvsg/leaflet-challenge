@@ -30,11 +30,33 @@ function createMap(earthquakes) {
     layers: [street,earthquakes]
   });
 
+
+// Add the legend. The styling is done in the style.css file
+var legend = L.control({ position: "bottomright" });
+
+legend.onAdd = function(map) {
+  var div = L.DomUtil.create("div", "legend");
+  div.innerHTML += "<h4>Depth (km)</h4>";
+  div.innerHTML += '<i style="background: #a3f600"></i><span>\<10</span><br>';
+  div.innerHTML += '<i style="background: #dcf400"></i><span>10-30</span><br>';
+  div.innerHTML += '<i style="background: #f7db11"></i><span>30-50</span><br>';
+  div.innerHTML += '<i style="background: #fdb72a"></i><span>50-70</span><br>';
+  div.innerHTML += '<i style="background: #fca35d"></i><span>70-90</span><br>';
+  div.innerHTML += '<i style="background: #ff5f65"></i><span>>90</span><br>';
+  return div;
+};
+
+legend.addTo(myMap);
+
+
+
+
 //   Create a layer control, and pass it baseMaps and overlayMaps. Add the layer control to the map.
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
 };
+
 
 
 // Create the createMarkers function.
@@ -45,7 +67,7 @@ function createMarkers(response) {
   // Initialize an array to hold the earthquake circles.
   let earthquakeMarkers = [];
 
-    console.log(`Last hour Earthquake: ${response.features.length}`);
+    console.log(`Last 7-day Earthquake: ${response.features.length}`);
   // Loop through the stations array.
     // For each earthquake, create a circle, and bind a popup with the eartquake's data.
     for (let i = 0; i < response.features.length; i++) {
@@ -60,14 +82,17 @@ function createMarkers(response) {
 
         return colordepth;     
         };
-
+        // console.log(new Date(response.features[i].properties.time).toUTCString());
       var marker = L.circle([response.features[i].geometry.coordinates[1],response.features[i].geometry.coordinates[0]],{
         color: "",
         fillColor: depthColor(response.features[i].geometry.coordinates[2]),
         fillOpacity: 0.7,
         radius: response.features[i].properties.mag*10000
-    }).bindPopup(`<h2>${response.features[i].properties.place}</h2>  <h2>Magnitude ${response.features[i].properties.mag.toLocaleString()}</h2>
-        <h2>Depth ${response.features[i].geometry.coordinates[2].toLocaleString()} meters</h2>`)
+    }).bindPopup(
+        `<h2>${response.features[i].properties.place}</h2>  <h2>Magnitude ${response.features[i].properties.mag.toLocaleString()}</h2>
+        <h2>Depth ${response.features[i].geometry.coordinates[2].toLocaleString()} km</h2>
+        <h4>Time: ${new Date(response.features[i].properties.time).toUTCString()} </h4>
+        `)
        
         earthquakeMarkers.push(marker);
       };
