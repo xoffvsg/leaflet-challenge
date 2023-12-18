@@ -8,7 +8,7 @@ let mapZoomLevel = 4;
 // Create the createMap function.
 function createMap(earthquakes, earthPlates) {
 
-  // Create the tile layer that will be the background of our map.
+  // Create the tile layers that will be the background of our map.
   let street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   });
@@ -23,20 +23,20 @@ function createMap(earthquakes, earthPlates) {
   });
 
 
-  // Create a baseMaps object to hold the lightmap layer.
+  // Create a baseMaps object to hold the map layers.
   let baseMaps = {
     "Street Map": street,
     "Topo": topo,
     "Satellite Map": googleSat
   };
 
-  // Create an overlayMaps object to hold the earthquake layer.
+  // Create an overlayMaps object to hold the earthquake layer and the tectonic boundaries layer.
   let overlayMaps = {
     "Earthquakes": earthquakes,
     "Tectonic boundaries": earthPlates
   };
 
-  // Create the map object with options.
+  // Create the map object with options preselected for Part2.
   let myMap = L.map("map", {
     center: conusCoords,
     zoom: mapZoomLevel,
@@ -128,7 +128,7 @@ function createMarkers(response, response2) {
         var earthPlates = L.layerGroup(tectonicPlates);
       };
     
-      // Create a layer group that's made from the earthquake circle array, and pass it to the createMap function.
+      // Create a layer group that is made from the earthquake circle array, and pass it to the createMap function.
     let earthquake = L.layerGroup(earthquakeMarkers);
     createMap(earthquake, earthPlates);
 
@@ -145,6 +145,6 @@ let url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.ge
 // let url2="https://github.com/fraxen/tectonicplates/blob/master/GeoJSON/PB2002_boundaries.json"
 
 let earthquakeInfo = d3.json(url);
-let tectonicInfo = d3.json('PB2002_boundaries.json');   // The file has been saved as a resource
+let tectonicInfo = d3.json('PB2002_boundaries.json');   // The file has been saved as a resource to avoid a CORS error when trying to read the URL directly.
 
 createMarkers(earthquakeInfo, tectonicInfo);
