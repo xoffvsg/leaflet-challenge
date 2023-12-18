@@ -1,7 +1,7 @@
 
 // Center the map and the zoom to view CONUS + Alaska + Hawaii
 let conusCoords = [53.73, -119.87];
-let mapZoomLevel = 4;
+let mapZoomLevel = 5; // Note that the value corresponds to different zoom levels on Open Street and on Google.
 
 
 
