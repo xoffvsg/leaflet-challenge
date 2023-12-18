@@ -22,4 +22,5 @@ The styling of the legend box in the bottom right corner is obtained by adding i
 
 ## Part 2
 In Part 2, we have added the visualization of the tectonic plate boundaries. The information was obtained from a [github repository](https://github.com/fraxen/tectonicplates/tree/master), but the URL could not be read directly by the javascript file because of a Cross-Origin Resource Sharing (CORS) error message. Since this information is static, we saved the information as a json file [PB2002_boundaries.json](https://github.com/xoffvsg/leaflet-challenge/blob/main/PB2002_boundaries.json) in the same folder as the index.html file, and read the data points from it.<br><br>
+![Part2_light](https://github.com/xoffvsg/leaflet-challenge/assets/141395221/b3532533-b2dd-45af-bf6b-132fa4c19db7)
 
