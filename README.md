@@ -9,7 +9,7 @@ When clicking on a circle, a pop-up window gives extra information, such as a de
 <img width="215" alt="PopUp_details" src="https://github.com/xoffvsg/leaflet-challenge/assets/141395221/b2033ce8-cfa2-41a1-85b5-921fd5c47f15">
 
 <br>
-The visualization of the results can be seen [here](https://xoffvsg.github.io/leaflet-challenge/).<br><br>
+The visualization of the results can be seen at https://xoffvsg.github.io/leaflet-challenge/ .<br><br>
 
 
 ## Part 1
@@ -21,5 +21,5 @@ The styling of the legend box in the bottom right corner is obtained by adding i
 <br>
 
 ## Part 2
-In Part 2, we have added the visualization of the tectonic plate boundaries. The information was obtained from a [github repository](https://github.com/fraxen/tectonicplates/blob/master/GeoJSON/PB2002_boundaries.json), but the URL could not be read directly by the javascript file because of a Cross-Origin Resource Sharing (CORS) error message. Since this information is static, we saved the information as a json file [PB2002_boundaries.json](https://github.com/xoffvsg/leaflet-challenge/blob/main/PB2002_boundaries.json) in the same folder as the index.html file, and read the data points from it.<br><br>
+In Part 2, we have added the visualization of the tectonic plate boundaries. The information was obtained from a [github repository](https://github.com/fraxen/tectonicplates/tree/master), but the URL could not be read directly by the javascript file because of a Cross-Origin Resource Sharing (CORS) error message. Since this information is static, we saved the information as a json file [PB2002_boundaries.json](https://github.com/xoffvsg/leaflet-challenge/blob/main/PB2002_boundaries.json) in the same folder as the index.html file, and read the data points from it.<br><br>
 
